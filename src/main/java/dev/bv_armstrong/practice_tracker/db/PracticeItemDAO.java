@@ -6,9 +6,9 @@ import java.util.List;
 
 public interface PracticeItemDAO {
 
-    int create(String name);
+    long create(String name);
 
-    PracticeItem getById(int id);
+    PracticeItem getById(long id);
 
     List<PracticeItem> getAll();
 

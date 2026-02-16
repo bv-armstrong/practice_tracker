@@ -1,4 +1,4 @@
-package dev.bv_armstrong.practice_tracker;
+package dev.bv_armstrong.practice_tracker.api;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
