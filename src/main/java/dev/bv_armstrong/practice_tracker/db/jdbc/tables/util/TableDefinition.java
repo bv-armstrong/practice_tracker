@@ -25,6 +25,11 @@ public abstract class TableDefinition<T> {
         connection.prepareStatement(sql).execute();
     }
 
+    public List<T> queryForAll(JdbcTemplate sqlTemplate) {
+        String sql = String.format("select * from %s;", getName());
+        return sqlTemplate.query(sql, (res, row) -> mapToObject(res));
+    }
+
     public <ColType> T queryForObjectByVal(JdbcTemplate sqlTemplate, SqlColumn<ColType> column, ColType val) {
         String sql = String.format("select * from %s where %s = ?;", getName(), column.getName());
         try {

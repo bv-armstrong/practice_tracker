@@ -25,7 +25,6 @@ public class PracticeItemDAOImpl implements PracticeItemDAO {
 
     @Override
     public long create(String name) {
-//        SqlParameterSource parameters = new BeanPropertySqlParameterSource(actor);
         Map<String, Object> parameters = Map.of(NAME_COL.getName(), name);
         Number id = inserter.executeAndReturnKey(parameters);
         return id.longValue();
@@ -38,6 +37,6 @@ public class PracticeItemDAOImpl implements PracticeItemDAO {
 
     @Override
     public List<PracticeItem> getAll() {
-        return List.of();
+        return FUNCTIONS.queryForAll(template);
     }
 }
