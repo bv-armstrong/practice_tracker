@@ -1,4 +1,4 @@
-package dev.bv_armstrong.practice_tracker.api;
+package dev.bv_armstrong.practice_tracker.spring;
 
 import dev.bv_armstrong.practice_tracker.db.PracticeItemDAO;
 import dev.bv_armstrong.practice_tracker.model.PracticeItem;
@@ -14,7 +14,7 @@ public class ItemsController {
 
     private ItemService itemService;
 
-    @Autowired
+    @Autowired // TODO: Shouldn't care about DAO?
     public ItemsController(PracticeItemDAO practiceItemDAO) {
         this.itemService = new ItemService(practiceItemDAO);
     }
