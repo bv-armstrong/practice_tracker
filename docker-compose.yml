@@ -1,0 +1,28 @@
+services:
+  database:
+    image: "mysql:8.0"
+    container_name: "practice_tracker_db"
+#    restart: always
+    ports:
+      - 3309:3306
+#    networks:
+    environment:
+      MYSQL_ROOT_PASSWORD: root@123
+    volumes:
+      - practice_tracker_data:/data
+
+  practice_tracker_api:
+    build:
+      context: ./
+      dockerfile: Dockerfile
+#    restart: always
+    ports:
+      - 8080:8080
+#    networks:
+    depends_on:
+      - database
+    volumes: # TODO: Remove dependency
+      - practice_tracker_data:/app/data
+
+volumes:
+  practice_tracker_data:

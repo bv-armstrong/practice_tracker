@@ -15,12 +15,14 @@ public class PracticeItemDAOImpl implements PracticeItemDAO {
 
     private final SimpleJdbcInsert inserter;
     private final JdbcTemplate template;
+//    private final JdbcAggregateTemplate jdbcAggregateTemplate;
 
     public PracticeItemDAOImpl(DataSource dataSource) {
         template = new JdbcTemplate(dataSource);
         inserter = new SimpleJdbcInsert(dataSource)
                 .withTableName(TABLE_NAME)
                 .usingGeneratedKeyColumns(ID_COL.getName());
+//        jdbcAggregateTemplate = jdbcTemplate;
     }
 
     @Override
@@ -28,15 +30,19 @@ public class PracticeItemDAOImpl implements PracticeItemDAO {
         Map<String, Object> parameters = Map.of(NAME_COL.getName(), name);
         Number id = inserter.executeAndReturnKey(parameters);
         return id.longValue();
+//        PracticeItem item = new PracticeItem(name);
+//        return jdbcAggregateTemplate.save(item).id();  // TODO: Return object?
     }
 
     @Override
     public PracticeItem getById(long id) {
+//        return jdbcAggregateTemplate.findById(id, PracticeItem.class);
         return FUNCTIONS.queryForObjectByVal(template, ID_COL, id);
     }
 
     @Override
     public List<PracticeItem> getAll() {
+//        return jdbcAggregateTemplate.findAll(PracticeItem.class);
         return FUNCTIONS.queryForAll(template);
     }
 }

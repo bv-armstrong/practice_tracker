@@ -26,7 +26,7 @@ public class TestData {
 
     public PracticeItem getItemById(long id) {
         return items.stream()
-                .filter(item -> item.id() == id)
+                .filter(item -> item.getId() == id)
                 .findAny()
                 .orElse(null);
     }

@@ -3,6 +3,7 @@ package dev.bv_armstrong.practice_tracker.spring;
 import dev.bv_armstrong.practice_tracker.db.PracticeItemDAO;
 import dev.bv_armstrong.practice_tracker.db.jdbc.PracticeItemDAOImpl;
 import dev.bv_armstrong.practice_tracker.db.jdbc.tables.PracticeItemTableDefinition;
+import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -17,13 +18,11 @@ import javax.sql.DataSource;
 @ComponentScan("dev.bv_armstrong.practice_tracker.db.jdbc")
 public class Config {
 
-    private static final String DB_LOCATION = "./test.sqlite";
 
     @Bean
+    @ConfigurationProperties("spring.datasource")
     public DataSource dataSource() {
-        SQLiteDataSource dataSource = new SQLiteDataSource();
-        dataSource.setUrl("jdbc:sqlite:" + DB_LOCATION);
-        return dataSource;
+        return new SQLiteDataSource();
     }
 
     @Bean
